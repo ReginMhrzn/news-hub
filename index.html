@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsHub · Breaking News & Stories</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <div class="bg-gray-900 text-white text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <span id="today-date" class="text-gray-300"></span>
+        <span class="hidden sm:inline text-gray-500">|</span>
+        <span class="hidden sm:inline text-gray-300">Lorem ipsum dolor sit amet</span>
+      </div>
+      <div class="flex items-center space-x-3">
+        <a href="#" class="hover:text-red-400 transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-red-400 transition"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-red-400 transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-red-400 transition"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-3">
+
+        <a href="#" class="flex items-center space-x-2 flex-shrink-0">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-md">
+            <i class="fas fa-newspaper text-white text-sm"></i>
+          </div>
+          <span class="serif font-extrabold text-2xl tracking-tight">NewsHub</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center space-x-7">
+          <a href="#" class="underline-grow text-sm font-medium text-gray-700 hover:text-red-600 transition">Home</a>
+          <a href="#" class="underline-grow text-sm font-medium text-gray-700 hover:text-red-600 transition">World</a>
+          <a href="#" class="underline-grow text-sm font-medium text-gray-700 hover:text-red-600 transition">Tech</a>
+          <a href="#" class="underline-grow text-sm font-medium text-gray-700 hover:text-red-600 transition">Business</a>
+          <a href="#" class="underline-grow text-sm font-medium text-gray-700 hover:text-red-600 transition">Sports</a>
+          <a href="#" class="underline-grow text-sm font-medium text-gray-700 hover:text-red-600 transition">Culture</a>
+        </nav>
+
+        <div class="hidden md:flex flex-1 max-w-xs relative">
+          <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none"></i>
+          <input type="text" id="search-inline" placeholder="Search articles..."
+            class="w-full pl-10 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition bg-gray-50">
+        </div>
+
+        <div class="flex items-center space-x-2 flex-shrink-0">
+          <button id="search-toggle" class="md:hidden flex items-center justify-center w-9 h-9 rounded-full text-gray-600 hover:bg-gray-100 transition">
+            <i class="fas fa-search text-sm"></i>
+          </button>
+          <button class="hidden sm:flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition shadow-sm">
+            <i class="fas fa-user text-xs"></i>
+            <span>Subscribe</span>
+          </button>
+          <button id="menu-toggle" class="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg text-gray-700 hover:bg-gray-100 transition">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="mobile-search" class="hidden md:hidden border-t border-gray-200 bg-white px-4 py-3">
+      <div class="relative">
+        <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none"></i>
+        <input type="text" id="search-mobile" placeholder="Search articles..."
+          class="w-full pl-10 pr-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition">
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-200 bg-white">
+      <div class="px-4 py-3 space-y-1">
+        <a href="#" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition">Home</a>
+        <a href="#" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition">World</a>
+        <a href="#" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition">Tech</a>
+        <a href="#" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition">Business</a>
+        <a href="#" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition">Sports</a>
+        <a href="#" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition">Culture</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="bg-red-600 text-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-10">
+      <span class="flex-shrink-0 bg-white text-red-600 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide mr-4">
+        Breaking
+      </span>
+      <div class="overflow-hidden flex-1">
+        <div class="ticker flex whitespace-nowrap text-sm font-medium">
+          <span class="pr-16">• Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+          <span class="pr-16">• Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span>
+          <span class="pr-16">• Ut enim ad minim veniam, quis nostrud exercitation ullamco</span>
+          <span class="pr-16">• Duis aute irure dolor in reprehenderit in voluptate velit</span>
+          <span class="pr-16">• Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+          <span class="pr-16">• Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span>
+          <span class="pr-16">• Ut enim ad minim veniam, quis nostrud exercitation ullamco</span>
+          <span class="pr-16">• Duis aute irure dolor in reprehenderit in voluptate velit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <div id="search-info" class="hidden mb-6 p-4 bg-red-50 border border-red-100 rounded-xl flex items-center justify-between">
+      <p class="text-sm text-gray-700">
+        Showing results for "<span id="search-term-display" class="font-semibold text-red-600"></span>"
+        — <span id="search-count" class="font-semibold">0</span> found
+      </p>
+      <button id="clear-search" class="text-xs font-medium text-red-600 hover:text-red-700 transition flex items-center space-x-1">
+        <i class="fas fa-times"></i>
+        <span>Clear</span>
+      </button>
+    </div>
+
+    <div id="no-search-results" class="hidden text-center py-16">
+      <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-4">
+        <i class="fas fa-search text-3xl text-gray-400"></i>
+      </div>
+      <h3 class="serif text-xl font-bold text-gray-700 mb-1">No articles found</h3>
+      <p class="text-sm text-gray-500">Try a different keyword or browse all stories.</p>
+    </div>
+
+    <section id="hero-section" class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10 fade-in">
+
+      <div class="lg:col-span-2">
+        <article class="card-hover group cursor-pointer news-card"
+          data-id="hero-1"
+          data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod"
+          data-category="World News"
+          data-author="Alex Rivera"
+          data-time="2 hours ago"
+          data-read="5 min read"
+          data-image="https://images.unsplash.com/photo-1495020689067-958852a7765e?w=1200&q=80"
+          data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.">
+          <div class="relative overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?w=1200&q=80"
+              alt="Hero news"
+              class="card-img w-full h-[280px] sm:h-[380px] lg:h-[460px] object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-8 text-white">
+              <span class="inline-block bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide mb-3">
+                World News
+              </span>
+              <h1 class="serif text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-3">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod
+              </h1>
+              <p class="hidden sm:block text-sm text-white/85 mb-4 max-w-2xl">
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <div class="flex items-center space-x-3 text-xs text-white/80">
+                <div class="w-7 h-7 rounded-full bg-white/25 flex items-center justify-center font-semibold text-[10px]">AR</div>
+                <span class="font-medium">Alex Rivera</span>
+                <span>·</span>
+                <span>2 hours ago</span>
+                <span>·</span>
+                <span><i class="far fa-clock mr-1"></i>5 min read</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="space-y-6">
+        <article class="card-hover group cursor-pointer news-card"
+          data-id="side-1"
+          data-title="Sed do eiusmod tempor incididunt ut labore et dolore magna"
+          data-category="Technology"
+          data-author="Sara Chen"
+          data-time="5 hours ago"
+          data-read="4 min read"
+          data-image="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80"
+          data-content="Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+          <div class="relative overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80"
+              alt="Tech news"
+              class="card-img w-full h-[180px] object-cover">
+            <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide">
+              Technology
+            </span>
+          </div>
+          <div class="pt-3">
+            <h3 class="serif text-lg font-bold leading-snug mb-1.5 group-hover:text-red-600 transition">
+              Sed do eiusmod tempor incididunt ut labore et dolore magna
+            </h3>
+            <div class="flex items-center space-x-2 text-xs text-gray-500">
+              <span class="font-medium">Sara Chen</span>
+              <span>·</span>
+              <span>5 hours ago</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card-hover group cursor-pointer news-card"
+          data-id="side-2"
+          data-title="Ut enim ad minim veniam quis nostrud exercitation ullamco"
+          data-category="Sports"
+          data-author="Marcus Lee"
+          data-time="8 hours ago"
+          data-read="3 min read"
+          data-image="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&q=80"
+          data-content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.">
+          <div class="relative overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&q=80"
+              alt="Sports news"
+              class="card-img w-full h-[180px] object-cover">
+            <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide">
+              Sports
+            </span>
+          </div>
+          <div class="pt-3">
+            <h3 class="serif text-lg font-bold leading-snug mb-1.5 group-hover:text-red-600 transition">
+              Ut enim ad minim veniam quis nostrud exercitation ullamco
+            </h3>
+            <div class="flex items-center space-x-2 text-xs text-gray-500">
+              <span class="font-medium">Marcus Lee</span>
+              <span>·</span>
+              <span>8 hours ago</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </section>
+
+    <section id="filter-section" class="mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="serif text-2xl sm:text-3xl font-bold">Latest Stories</h2>
+        <a href="#" class="hidden sm:flex items-center text-sm font-medium text-red-600 hover:text-red-700 transition">
+          View all <i class="fas fa-arrow-right ml-2 text-xs"></i>
+        </a>
+      </div>
+
+      <div class="flex flex-wrap gap-2 pb-1">
+        <button class="filter-btn active px-4 py-2 text-xs font-semibold rounded-full bg-red-600 text-white transition">All</button>
+        <button class="filter-btn px-4 py-2 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition">World</button>
+        <button class="filter-btn px-4 py-2 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition">Technology</button>
+        <button class="filter-btn px-4 py-2 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition">Business</button>
+        <button class="filter-btn px-4 py-2 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition">Sports</button>
+        <button class="filter-btn px-4 py-2 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition">Culture</button>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <div class="lg:col-span-2">
+        <div id="article-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+          <article class="card-hover group cursor-pointer news-card"
+            data-id="a1"
+            data-title="Duis aute irure dolor in reprehenderit in voluptate velit esse"
+            data-category="Business"
+            data-author="Nina Patel"
+            data-time="3 hours ago"
+            data-read="6 min read"
+            data-image="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&q=80"
+            data-content="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.">
+            <div class="overflow-hidden rounded-xl">
+              <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&q=80"
+                alt="Business"
+                class="card-img w-full h-[190px] object-cover">
+            </div>
+            <div class="pt-3.5">
+              <span class="text-[10px] font-bold text-amber-600 uppercase tracking-wide">Business</span>
+              <h3 class="serif text-lg font-bold leading-snug mt-1 mb-2 group-hover:text-red-600 transition">
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+              </h3>
+              <p class="text-sm text-gray-500 leading-relaxed mb-3 line-clamp-2">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.
+              </p>
+              <div class="flex items-center space-x-2 text-xs text-gray-500">
+                <span class="font-medium">Nina Patel</span>
+                <span>·</span>
+                <span>3 hours ago</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-hover group cursor-pointer news-card"
+            data-id="a2"
+            data-title="Sed ut perspiciatis unde omnis iste natus error sit voluptatem"
+            data-category="Culture"
+            data-author="Liam Ortiz"
+            data-time="6 hours ago"
+            data-read="4 min read"
+            data-image="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80"
+            data-content="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.">
+            <div class="overflow-hidden rounded-xl">
+              <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80"
+                alt="Culture"
+                class="card-img w-full h-[190px] object-cover">
+            </div>
+            <div class="pt-3.5">
+              <span class="text-[10px] font-bold text-fuchsia-600 uppercase tracking-wide">Culture</span>
+              <h3 class="serif text-lg font-bold leading-snug mt-1 mb-2 group-hover:text-red-600 transition">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              </h3>
+              <p class="text-sm text-gray-500 leading-relaxed mb-3 line-clamp-2">
+                Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.
+              </p>
+              <div class="flex items-center space-x-2 text-xs text-gray-500">
+                <span class="font-medium">Liam Ortiz</span>
+                <span>·</span>
+                <span>6 hours ago</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-hover group cursor-pointer news-card"
+            data-id="a3"
+            data-title="Nemo enim ipsam voluptatem quia voluptas sit aspernatur"
+            data-category="Technology"
+            data-author="Priya Sharma"
+            data-time="10 hours ago"
+            data-read="5 min read"
+            data-image="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?w=800&q=80"
+            data-content="Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.">
+            <div class="overflow-hidden rounded-xl">
+              <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?w=800&q=80"
+                alt="Tech"
+                class="card-img w-full h-[190px] object-cover">
+            </div>
+            <div class="pt-3.5">
+              <span class="text-[10px] font-bold text-blue-600 uppercase tracking-wide">Technology</span>
+              <h3 class="serif text-lg font-bold leading-snug mt-1 mb-2 group-hover:text-red-600 transition">
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur
+              </h3>
+              <p class="text-sm text-gray-500 leading-relaxed mb-3 line-clamp-2">
+                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur.
+              </p>
+              <div class="flex items-center space-x-2 text-xs text-gray-500">
+                <span class="font-medium">Priya Sharma</span>
+                <span>·</span>
+                <span>10 hours ago</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-hover group cursor-pointer news-card"
+            data-id="a4"
+            data-title="At vero eos et accusamus et iusto odio dignissimos ducimus"
+            data-category="World"
+            data-author="Diego Morales"
+            data-time="12 hours ago"
+            data-read="7 min read"
+            data-image="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80"
+            data-content="At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.">
+            <div class="overflow-hidden rounded-xl">
+              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80"
+                alt="World"
+                class="card-img w-full h-[190px] object-cover">
+            </div>
+            <div class="pt-3.5">
+              <span class="text-[10px] font-bold text-red-600 uppercase tracking-wide">World</span>
+              <h3 class="serif text-lg font-bold leading-snug mt-1 mb-2 group-hover:text-red-600 transition">
+                At vero eos et accusamus et iusto odio dignissimos ducimus
+              </h3>
+              <p class="text-sm text-gray-500 leading-relaxed mb-3 line-clamp-2">
+                Et harum quidem rerum facilis est et expedita distinctio nam libero tempore.
+              </p>
+              <div class="flex items-center space-x-2 text-xs text-gray-500">
+                <span class="font-medium">Diego Morales</span>
+                <span>·</span>
+                <span>12 hours ago</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <aside class="space-y-8">
+
+        <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100">
+          <div class="flex items-center space-x-2 mb-4">
+            <i class="fas fa-fire text-red-500"></i>
+            <h3 class="serif text-lg font-bold">Trending Now</h3>
+          </div>
+          <div class="space-y-4">
+
+            <div class="flex items-start space-x-3 group cursor-pointer news-card"
+              data-id="t1"
+              data-title="Lorem ipsum dolor sit amet consectetur adipiscing"
+              data-category="World"
+              data-author="Trending Staff"
+              data-time="1h ago"
+              data-read="4 min read"
+              data-image="https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&q=80"
+              data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.">
+              <span class="serif text-2xl font-bold text-gray-300 group-hover:text-red-500 transition">01</span>
+              <div>
+                <h4 class="text-sm font-semibold leading-snug group-hover:text-red-600 transition">
+                  Lorem ipsum dolor sit amet consectetur adipiscing
+                </h4>
+                <span class="text-[11px] text-gray-500">World · 1h ago</span>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3 group cursor-pointer news-card"
+              data-id="t2"
+              data-title="Sed do eiusmod tempor incididunt ut labore dolore"
+              data-category="Tech"
+              data-author="Trending Staff"
+              data-time="2h ago"
+              data-read="3 min read"
+              data-image="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80"
+              data-content="Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.">
+              <span class="serif text-2xl font-bold text-gray-300 group-hover:text-red-500 transition">02</span>
+              <div>
+                <h4 class="text-sm font-semibold leading-snug group-hover:text-red-600 transition">
+                  Sed do eiusmod tempor incididunt ut labore dolore
+                </h4>
+                <span class="text-[11px] text-gray-500">Tech · 2h ago</span>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3 group cursor-pointer news-card"
+              data-id="t3"
+              data-title="Ut enim ad minim veniam quis nostrud exercitation"
+              data-category="Business"
+              data-author="Trending Staff"
+              data-time="3h ago"
+              data-read="5 min read"
+              data-image="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&q=80"
+              data-content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.">
+              <span class="serif text-2xl font-bold text-gray-300 group-hover:text-red-500 transition">03</span>
+              <div>
+                <h4 class="text-sm font-semibold leading-snug group-hover:text-red-600 transition">
+                  Ut enim ad minim veniam quis nostrud exercitation
+                </h4>
+                <span class="text-[11px] text-gray-500">Business · 3h ago</span>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3 group cursor-pointer news-card"
+              data-id="t4"
+              data-title="Duis aute irure dolor in reprehenderit voluptate"
+              data-category="Sports"
+              data-author="Trending Staff"
+              data-time="5h ago"
+              data-read="4 min read"
+              data-image="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&q=80"
+              data-content="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.">
+              <span class="serif text-2xl font-bold text-gray-300 group-hover:text-red-500 transition">04</span>
+              <div>
+                <h4 class="text-sm font-semibold leading-snug group-hover:text-red-600 transition">
+                  Duis aute irure dolor in reprehenderit voluptate
+                </h4>
+                <span class="text-[11px] text-gray-500">Sports · 5h ago</span>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3 group cursor-pointer news-card"
+              data-id="t5"
+              data-title="Excepteur sint occaecat cupidatat non proident"
+              data-category="Culture"
+              data-author="Trending Staff"
+              data-time="6h ago"
+              data-read="3 min read"
+              data-image="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80"
+              data-content="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.">
+              <span class="serif text-2xl font-bold text-gray-300 group-hover:text-red-500 transition">05</span>
+              <div>
+                <h4 class="text-sm font-semibold leading-snug group-hover:text-red-600 transition">
+                  Excepteur sint occaecat cupidatat non proident
+                </h4>
+                <span class="text-[11px] text-gray-500">Culture · 6h ago</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center mb-4">
+            <i class="fas fa-envelope-open-text"></i>
+          </div>
+          <h3 class="serif text-xl font-bold mb-2">Daily Newsletter</h3>
+          <p class="text-sm text-white/70 mb-4 leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Get the top stories in your inbox.
+          </p>
+          <form class="space-y-3" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="you@example.com"
+              class="w-full px-4 py-2.5 text-sm rounded-lg bg-white/10 border border-white/20 placeholder-white/50 text-white focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+            <button type="submit"
+              class="w-full bg-red-600 hover:bg-red-700 text-white text-sm font-semibold py-2.5 rounded-lg transition shadow-sm">
+              Subscribe Now
+            </button>
+          </form>
+          <p class="text-[11px] text-white/50 mt-3">No spam. Unsubscribe anytime.</p>
+        </div>
+
+        <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100">
+          <h3 class="serif text-lg font-bold mb-4">Categories</h3>
+          <div class="space-y-1">
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-white hover:text-red-600 transition">
+              <span><i class="fas fa-globe text-xs mr-2.5 text-gray-400"></i>World</span>
+              <span class="text-xs text-gray-400">42</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-white hover:text-red-600 transition">
+              <span><i class="fas fa-microchip text-xs mr-2.5 text-gray-400"></i>Technology</span>
+              <span class="text-xs text-gray-400">28</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-white hover:text-red-600 transition">
+              <span><i class="fas fa-chart-line text-xs mr-2.5 text-gray-400"></i>Business</span>
+              <span class="text-xs text-gray-400">19</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-white hover:text-red-600 transition">
+              <span><i class="fas fa-futbol text-xs mr-2.5 text-gray-400"></i>Sports</span>
+              <span class="text-xs text-gray-400">33</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-white hover:text-red-600 transition">
+              <span><i class="fas fa-palette text-xs mr-2.5 text-gray-400"></i>Culture</span>
+              <span class="text-xs text-gray-400">15</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-900 text-gray-300 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center">
+              <i class="fas fa-newspaper text-white text-sm"></i>
+            </div>
+            <span class="serif font-extrabold text-xl text-white">NewsHub</span>
+          </div>
+          <p class="text-sm text-gray-400 leading-relaxed mb-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Breaking news and stories from around the world.
+          </p>
+          <div class="flex items-center space-x-3">
+            <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-red-600 flex items-center justify-center transition"><i class="fab fa-facebook-f text-sm"></i></a>
+            <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-red-600 flex items-center justify-center transition"><i class="fab fa-twitter text-sm"></i></a>
+            <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-red-600 flex items-center justify-center transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-red-600 flex items-center justify-center transition"><i class="fab fa-youtube text-sm"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wide">Sections</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#" class="hover:text-red-500 transition">World</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Technology</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Business</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Sports</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Culture</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wide">Company</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#" class="hover:text-red-500 transition">About Us</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Careers</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Advertise</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Contact</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Press Kit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wide">Legal</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#" class="hover:text-red-500 transition">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Cookie Policy</a></li>
+            <li><a href="#" class="hover:text-red-500 transition">Disclaimer</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+        <p>&copy; ReginMhrzn | All rights reserved.</p>
+        <p class="mt-2 sm:mt-0">Made with <i class="fas fa-heart text-red-500 mx-1"></i> for readers worldwide</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="article-modal" class="fixed inset-0 z-50 hidden">
+    <div id="article-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm modal-backdrop-enter"></div>
+    <div class="relative h-full overflow-y-auto flex items-start sm:items-center justify-center p-0 sm:p-6">
+      <div class="modal-enter relative bg-white w-full sm:max-w-3xl sm:rounded-2xl shadow-2xl overflow-hidden my-0 sm:my-8">
+
+        <button id="close-article" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm flex items-center justify-center text-white transition">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div class="relative">
+          <img id="modal-image" src="" alt="Article"
+            class="w-full h-[240px] sm:h-[320px] object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white">
+            <span id="modal-category" class="inline-block bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide mb-3">
+              Category
+            </span>
+            <h2 id="modal-title" class="serif text-2xl sm:text-3xl font-bold leading-tight">
+              Article Title
+            </h2>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8">
+
+          <div class="flex flex-wrap items-center gap-4 pb-5 mb-5 border-b border-gray-100">
+            <div class="flex items-center space-x-3">
+              <div id="modal-avatar" class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white font-semibold text-sm">
+                A
+              </div>
+              <div>
+                <p id="modal-author" class="text-sm font-semibold text-gray-900">Author Name</p>
+                <p class="text-xs text-gray-500">Staff Writer</p>
+              </div>
+            </div>
+            <div class="flex items-center space-x-4 text-xs text-gray-500 sm:ml-auto">
+              <span><i class="far fa-clock mr-1"></i><span id="modal-time">2 hours ago</span></span>
+              <span><i class="fas fa-book-open mr-1"></i><span id="modal-read">5 min read</span></span>
+            </div>
+          </div>
+
+          <div id="modal-content" class="text-gray-700 leading-relaxed space-y-4 text-[15px]">
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Share</span>
+              <button class="w-9 h-9 rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white flex items-center justify-center text-gray-600 transition"><i class="fab fa-facebook-f text-sm"></i></button>
+              <button class="w-9 h-9 rounded-full bg-gray-100 hover:bg-sky-500 hover:text-white flex items-center justify-center text-gray-600 transition"><i class="fab fa-twitter text-sm"></i></button>
+              <button class="w-9 h-9 rounded-full bg-gray-100 hover:bg-green-600 hover:text-white flex items-center justify-center text-gray-600 transition"><i class="fab fa-whatsapp text-sm"></i></button>
+              <button class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-800 hover:text-white flex items-center justify-center text-gray-600 transition"><i class="fas fa-link text-sm"></i></button>
+            </div>
+            <button id="close-article-bottom" class="text-sm font-medium text-gray-600 hover:text-red-600 transition">
+              Close
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
